@@ -17,6 +17,7 @@
             android:layout_margin="5dp"
             android:layout_gravity="center"
             android:src="@drawable/ic_report_problem_yellow_900_24dp" />
+
         <TextView
             android:id="@+id/tipper_info"
             android:layout_width="match_parent"
@@ -26,7 +27,7 @@
             android:textColor="@color/puredark"
             android:textSize="13sp"
             android:text=""
-            android:layout_weight="1"/>
+            android:layout_weight="1" />
 
         <ImageButton
             android:id="@+id/tipper_help"
@@ -35,7 +36,7 @@
             android:layout_gravity="center"
             android:layout_margin="5dp"
             android:background="#00FFFFFF"
-            android:src="@drawable/ic_help_outline_blue_500_24dp"/>
+            android:src="@drawable/ic_help_outline_blue_500_24dp" />
 
     </LinearLayout>
 

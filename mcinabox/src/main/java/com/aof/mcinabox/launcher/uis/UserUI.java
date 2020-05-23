@@ -91,6 +91,7 @@ public class UserUI extends StandUI {
      * Refresh User list
      **/
     private ArrayList<UserListBean> userlist = new ArrayList<UserListBean>();
+
     private void refreshLocalUserList(SettingJson setting) {
         SettingJson.Accounts[] accounts = setting.getAccounts();
         ArrayList<UserListBean> tmp = new ArrayList<UserListBean>() {

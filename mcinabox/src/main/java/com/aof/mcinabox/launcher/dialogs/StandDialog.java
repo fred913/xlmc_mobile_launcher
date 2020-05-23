@@ -17,6 +17,7 @@ public abstract class StandDialog extends Dialog {
 
     //This is Activity.
     public Activity mContext;
+
     @Override
     abstract protected void onCreate(Bundle savedInstanceState);
 }

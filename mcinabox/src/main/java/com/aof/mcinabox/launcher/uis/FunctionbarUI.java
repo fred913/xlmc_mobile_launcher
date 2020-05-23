@@ -13,7 +13,7 @@ import com.aof.mcinabox.launcher.json.SettingJson;
 
 public class FunctionbarUI extends StandUI {
 
-    public FunctionbarUI(Activity context){
+    public FunctionbarUI(Activity context) {
         super(context);
         initUI();
     }
@@ -39,8 +39,8 @@ public class FunctionbarUI extends StandUI {
         buttonSetting = layout_functionbar.findViewById(R.id.main_button_setting);
         buttonKeyboard = layout_functionbar.findViewById(R.id.main_button_keyboard);
 
-        views = new View[]{buttonUser,buttonPlugin,buttonGamelist,buttonGamedir,buttonSetting,buttonKeyboard};
-        for(View v : views){
+        views = new View[]{buttonUser, buttonPlugin, buttonGamelist, buttonGamedir, buttonSetting, buttonKeyboard};
+        for (View v : views) {
             v.setOnClickListener(clickListener);
         }
     }
@@ -65,26 +65,26 @@ public class FunctionbarUI extends StandUI {
         return layout_functionbar.getVisibility();
     }
 
-    private View.OnClickListener clickListener = new View.OnClickListener(){
+    private View.OnClickListener clickListener = new View.OnClickListener() {
 
         @Override
         public void onClick(View v) {
-            if(v == buttonUser){
-                ((MainActivity)mContext).switchUIs(((MainActivity) mContext).uiUser,mContext.getString(R.string.title_user));
+            if (v == buttonUser) {
+                ((MainActivity) mContext).switchUIs(((MainActivity) mContext).uiUser, mContext.getString(R.string.title_user));
             }
-            if(v == buttonPlugin){
-                ((MainActivity)mContext).switchUIs(((MainActivity) mContext).uiPlugin,mContext.getString(R.string.title_plugin));
+            if (v == buttonPlugin) {
+                ((MainActivity) mContext).switchUIs(((MainActivity) mContext).uiPlugin, mContext.getString(R.string.title_plugin));
             }
-            if(v == buttonGamelist){
-                ((MainActivity)mContext).switchUIs(((MainActivity) mContext).uiGamelist,mContext.getString(R.string.title_gamelist));
+            if (v == buttonGamelist) {
+                ((MainActivity) mContext).switchUIs(((MainActivity) mContext).uiGamelist, mContext.getString(R.string.title_gamelist));
             }
-            if(v == buttonGamedir){
-                ((MainActivity)mContext).switchUIs(((MainActivity) mContext).uiGamedir,mContext.getString(R.string.title_gamedir));
+            if (v == buttonGamedir) {
+                ((MainActivity) mContext).switchUIs(((MainActivity) mContext).uiGamedir, mContext.getString(R.string.title_gamedir));
             }
-            if(v == buttonSetting){
-                ((MainActivity)mContext).switchUIs(((MainActivity) mContext).uiLauncherSetting,mContext.getString(R.string.title_launchersetting));
+            if (v == buttonSetting) {
+                ((MainActivity) mContext).switchUIs(((MainActivity) mContext).uiLauncherSetting, mContext.getString(R.string.title_launchersetting));
             }
-            if(v == buttonKeyboard){
+            if (v == buttonKeyboard) {
                 //Start VirtualKeyboardActivity.
                 Intent intent = new Intent(mContext, VirtualKeyBoardActivity.class);
                 mContext.startActivity(intent);

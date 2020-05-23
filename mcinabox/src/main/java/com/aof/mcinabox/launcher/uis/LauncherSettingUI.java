@@ -212,7 +212,6 @@ public class LauncherSettingUI extends StandUI {
                 Handler handler = ((MainActivity) mContext).handler;
                 File packageFile = new File(mpackagePath);
                 if (!packageFile.exists()) {
-
                     Message msg_1 = new Message();
                     msg_1.what = 4;
                     handler.sendMessage(msg_1);

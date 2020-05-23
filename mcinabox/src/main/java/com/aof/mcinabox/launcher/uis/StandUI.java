@@ -1,6 +1,7 @@
 package com.aof.mcinabox.launcher.uis;
 
 import android.app.Activity;
+
 import com.aof.mcinabox.launcher.json.SettingJson;
 
 public abstract class StandUI {
@@ -8,12 +9,12 @@ public abstract class StandUI {
     public Activity mContext;
 
     //Method instruction
-    public StandUI(Activity context){
+    public StandUI(Activity context) {
         super();
         setUIContext(context);
     }
 
-    public StandUI(Activity context,SettingJson setting){
+    public StandUI(Activity context, SettingJson setting) {
         this(context);
     }
 
@@ -33,7 +34,7 @@ public abstract class StandUI {
     public abstract int getUIVisiability();
 
     //Set Android Context
-    public void setUIContext(Activity context){
+    public void setUIContext(Activity context) {
         this.mContext = context;
     }
 

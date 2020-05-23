@@ -7,17 +7,18 @@ import com.aof.mcinabox.MainActivity;
 import com.aof.mcinabox.R;
 import com.aof.mcinabox.launcher.dialogs.CreateUserDialog;
 import com.google.gson.*;
+
 import java.io.*;
 import java.net.*;
 import java.nio.charset.Charset;
 import java.util.*;
 
-public class Login extends AsyncTask<String, Void, String>
-{
+public class Login extends AsyncTask<String, Void, String> {
     private CreateUserDialog context;
     private MainActivity mContext;
     private YggdrasilAuthenticator authenticator = new YggdrasilAuthenticator();
-    public Login(CreateUserDialog context,MainActivity mContext) {
+
+    public Login(CreateUserDialog context, MainActivity mContext) {
         this.context = context;
         this.mContext = mContext;
     }
@@ -48,7 +49,8 @@ public class Login extends AsyncTask<String, Void, String>
         try {
             AuthenticateResponse response = authenticator.authenticate(args[0], args[1], getClientId());
             if (response == null) return "Response is null?";
-           if (response.selectedProfile == null) return mContext.getResources().getString(R.string.login_is_demo_account);
+            if (response.selectedProfile == null)
+                return mContext.getResources().getString(R.string.login_is_demo_account);
             SharedPreferences prefs = mContext.getSharedPreferences("launcher_prefs", 0);
             prefs.edit().
                     putString("auth_accessToken", response.accessToken).
@@ -109,7 +111,7 @@ class YggdrasilAuthenticator {
                 is = conn.getInputStream();
             }
 
-            for (;;) {
+            for (; ; ) {
                 int amt = is.read(buf);
                 if (amt < 0)
                     break;
@@ -154,6 +156,7 @@ class RefreshResponse {
 class RefreshRequest {
     public String accessToken;
     public UUID clientToken;
+
     public RefreshRequest(String accessToken, UUID clientToken) {
         this.accessToken = accessToken;
         this.clientToken = clientToken;
@@ -165,6 +168,7 @@ class AuthenticateRequest {
     public String password;
     public AgentInfo agent;
     public UUID clientToken;
+
     public static class AgentInfo {
         public String name;
         public int version;

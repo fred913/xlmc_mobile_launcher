@@ -23,10 +23,12 @@ import java.io.Reader;
 import static com.aof.sharedmodule.Data.DataPathManifest.RUNTIME_HOME;
 
 public class JsonUtils {
-    /**【读入pack.json】**/
-    public static RuntimeJson getPackFromFile(File file){
-        if(file == null){
-            Log.e("JsonUtils","Json File is null.");
+    /**
+     * 【读入pack.json】
+     **/
+    public static RuntimeJson getPackFromFile(File file) {
+        if (file == null) {
+            Log.e("JsonUtils", "Json File is null.");
             return null;
         }
         try {
@@ -38,33 +40,37 @@ public class JsonUtils {
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-            Log.e("JsonUtils","Json File not found.");
+            Log.e("JsonUtils", "Json File not found.");
             return null;
         }
     }
-    public static RuntimeJson getPackFromFile(String filepath){
+
+    public static RuntimeJson getPackFromFile(String filepath) {
         return getPackFromFile(new File(filepath));
     }
-    public static String getPackInformation(Context context){
+
+    public static String getPackInformation(Context context) {
         RuntimeJson info = getPackFromFile(RUNTIME_HOME + "/pack.json");
-        if(info == null){
+        if (info == null) {
             return "";
-        }else{
-            return ( context.getString(R.string.title_runtime_package_name) + " " + info.getPackName() + "\n" +
+        } else {
+            return (context.getString(R.string.title_runtime_package_name) + " " + info.getPackName() + "\n" +
                     context.getString(R.string.title_runtime_package_releasetime) + " " + info.getReleaseTime() + "\n" +
                     context.getString(R.string.title_runtime_package_platform) + " " + info.getPlatform() + "\n" +
                     context.getString(R.string.title_runtime_java_version) + " " + info.getJavaVersion() + "\n" +
                     context.getString(R.string.title_runtime_opengl_version) + " " + info.getOpenGLVersion() + "\n" +
                     context.getString(R.string.title_runtime_openal_version) + " " + info.getOpenALVersion() + "\n" +
-                    context.getString(R.string.title_runtime_lwjgl_version) + " " + info.getLwjgl2Version() + " " +  info.getLwjgl3Version() + "\n"
+                    context.getString(R.string.title_runtime_lwjgl_version) + " " + info.getLwjgl2Version() + " " + info.getLwjgl3Version() + "\n"
             );
         }
     }
 
-    /**【读入mcinabox.json】**/
-    public static SettingJson getSettingFromFile(File file){
-        if(file == null){
-            Log.e("JsonUtils","Json File is null.");
+    /**
+     * 【读入mcinabox.json】
+     **/
+    public static SettingJson getSettingFromFile(File file) {
+        if (file == null) {
+            Log.e("JsonUtils", "Json File is null.");
             return null;
         }
         try {
@@ -76,18 +82,21 @@ public class JsonUtils {
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-            Log.e("JsonUtils","Json File not found.");
+            Log.e("JsonUtils", "Json File not found.");
             return null;
         }
     }
-    public static SettingJson getSettingFromFile(String filepath){
+
+    public static SettingJson getSettingFromFile(String filepath) {
         return getSettingFromFile(new File(filepath));
     }
 
-    /**【读入keyboard.json】**/
-    public static KeyboardJson getKeyboardFromFile(File file){
-        if(file == null){
-            Log.e("JsonUtils","Json File is null.");
+    /**
+     * 【读入keyboard.json】
+     **/
+    public static KeyboardJson getKeyboardFromFile(File file) {
+        if (file == null) {
+            Log.e("JsonUtils", "Json File is null.");
             return null;
         }
         try {
@@ -99,16 +108,19 @@ public class JsonUtils {
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-            Log.e("JsonUtils","Json File not found.");
+            Log.e("JsonUtils", "Json File not found.");
             return null;
         }
     }
-    public static KeyboardJson getKeyboardFromFile(String filepath){
+
+    public static KeyboardJson getKeyboardFromFile(String filepath) {
         return getKeyboardFromFile(new File(filepath));
     }
 
-    /**【保存mcinabox.json文件】**/
-    public static boolean saveSettingToFile(SettingJson setting,File toFile){
+    /**
+     * 【保存mcinabox.json文件】
+     **/
+    public static boolean saveSettingToFile(SettingJson setting, File toFile) {
         Gson gson = new Gson();
         String jsonString = gson.toJson(setting);
         try {
@@ -122,8 +134,9 @@ public class JsonUtils {
             return false;
         }
     }
-    public static boolean saveSettingToFile(SettingJson setting,String toFile){
-        return saveSettingToFile(setting,new File(toFile));
+
+    public static boolean saveSettingToFile(SettingJson setting, String toFile) {
+        return saveSettingToFile(setting, new File(toFile));
     }
 
 }

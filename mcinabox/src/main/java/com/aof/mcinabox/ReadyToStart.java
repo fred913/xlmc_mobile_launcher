@@ -12,6 +12,7 @@ import com.aof.mcinabox.utils.FileTool;
 import com.aof.mcinabox.utils.PathTool;
 import com.aof.mcinabox.minecraft.json.VersionJson;
 import com.google.gson.Gson;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -21,30 +22,33 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+
 import static com.aof.mcinabox.DataPathManifest.*;
 
 public class ReadyToStart {
 
-    private boolean forceRootRuntime =false;
+    private boolean forceRootRuntime = false;
     private String[] CMD;
     private String MCHome;
     private Context context;
     private boolean forgeMode = false;
 
-    /**【执行启动游戏】**/
-    public void StartGame(){
+    /**
+     * 【执行启动游戏】
+     **/
+    public void StartGame() {
         forgeMode = IsForgeMode();
 
-        if(forgeMode){
+        if (forgeMode) {
             File json = new File(minecraft_version_path + versionSetting.getInheritsFrom() + "/" + versionSetting.getInheritsFrom() + ".json");
             File jar = new File(minecraft_version_path + versionSetting.getInheritsFrom() + "/" + versionSetting.getInheritsFrom() + ".jar");
-            if(!json.exists() || !jar.exists()){
+            if (!json.exists() || !jar.exists()) {
                 Toast.makeText(context, context.getString(R.string.tips_gamecheck_version_notfound) + " " + versionSetting.getInheritsFrom(), Toast.LENGTH_SHORT).show();
                 return;
             }
-        }else{
+        } else {
             File jar = new File(minecraft_version_path + versionSetting.getId() + "/" + versionSetting.getId() + ".jar");
-            if(!jar.exists()){
+            if (!jar.exists()) {
                 Toast.makeText(context, context.getString(R.string.tips_gamecheck_jar_notfound) + " " + versionSetting.getInheritsFrom(), Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -53,26 +57,26 @@ public class ReadyToStart {
         //若是forge模式，检查时会初始化versionSettingS
         boolean gameCheckResult = CheckGame(forgeMode);
 
-        if(isCheckGame && !gameCheckResult){
+        if (isCheckGame && !gameCheckResult) {
             Toast.makeText(context, context.getString(R.string.tips_gamecheck_file_notfull), Toast.LENGTH_SHORT).show();
             return;
         }
-        if (isCheckFormat && !CheckFramework()){
+        if (isCheckFormat && !CheckFramework()) {
             Toast.makeText(context, context.getString(R.string.tips_gamecheck_platform_uncorrect), Toast.LENGTH_SHORT).show();
             return;
         }
         CMD = MakeStartCmd(forgeMode);
         //输出测试
-        for (String arg : CMD){
-            System.out.print(arg+" ");
-            Log.e("StartGame",arg);
+        for (String arg : CMD) {
+            System.out.print(arg + " ");
+            Log.e("StartGame", arg);
         }
         Intent intent = MakePushIntent();
         context.startActivity(intent);
 
     }
 
-    public ReadyToStart(Context context,String MCinaBox_Version,String DATA_PATH,String versionId,String KeyboardName){
+    public ReadyToStart(Context context, String MCinaBox_Version, String DATA_PATH, String versionId, String KeyboardName) {
         this.context = context;
         this.MCinaBox_Version = MCinaBox_Version;
         PathTool pathTool = new PathTool(DATA_PATH);
@@ -85,7 +89,7 @@ public class ReadyToStart {
         isCheckFormat = !launcherSetting.getConfigurations().isNotCheckJvm();
         KeyboardFileName = KeyboardName;
         versionSetting = com.aof.mcinabox.minecraft.JsonUtils.getVersionFromFile(minecraft_version_path + versionId + "/" + versionId + ".json");
-        if(IsForgeMode()){
+        if (IsForgeMode()) {
             versionSettingS = com.aof.mcinabox.minecraft.JsonUtils.getVersionFromFile(minecraft_version_path + versionSetting.getInheritsFrom() + "/" + versionSetting.getInheritsFrom() + ".json");
             versionSetting.setAssets(versionSettingS.getAssets());
         }
@@ -107,25 +111,27 @@ public class ReadyToStart {
     private VersionJson versionSettingS;
 
 
-    /**【检查Minecraft游戏文件的完整性】**/
+    /**
+     * 【检查Minecraft游戏文件的完整性】
+     **/
     //如果不完整就返回false
     //如果完整就返回true
-    private boolean CheckGame(boolean isforge){
+    private boolean CheckGame(boolean isforge) {
         boolean isOK = true;
         //检查forge
-        if(isforge){
+        if (isforge) {
             File json = new File(minecraft_version_path + versionSetting.getInheritsFrom() + "/" + versionSetting.getInheritsFrom() + ".json");
             File jar = new File(minecraft_version_path + versionSetting.getInheritsFrom() + "/" + versionSetting.getInheritsFrom() + ".jar");
-            if(!json.exists() || !jar.exists()){
+            if (!json.exists() || !jar.exists()) {
                 isOK = false;
-            }else{
+            } else {
                 //如果有forge，就先检查原版的依赖库,再检查forge的依赖库
                 versionSettingS = com.aof.mcinabox.minecraft.JsonUtils.getVersionFromFile(minecraft_version_path + versionSetting.getInheritsFrom() + "/" + versionSetting.getInheritsFrom() + ".json");
                 VersionJson.DependentLibrary[] libraries = versionSettingS.getLibraries();
-                for(VersionJson.DependentLibrary targetLibrary : libraries){
-                    if(!IsSpecialFile(targetLibrary.getName())){
+                for (VersionJson.DependentLibrary targetLibrary : libraries) {
+                    if (!IsSpecialFile(targetLibrary.getName())) {
                         File file = new File(GetLibrariesPath(targetLibrary.getName()));
-                        if(!file.exists()){
+                        if (!file.exists()) {
                             isOK = false;
                         }
                     }
@@ -136,19 +142,19 @@ public class ReadyToStart {
 
         //检查依赖库
         VersionJson.DependentLibrary[] libraries = versionSetting.getLibraries();
-        for(VersionJson.DependentLibrary targetLibrary : libraries){
-            if(!IsSpecialFile(targetLibrary.getName())){
+        for (VersionJson.DependentLibrary targetLibrary : libraries) {
+            if (!IsSpecialFile(targetLibrary.getName())) {
                 File file = new File(GetLibrariesPath(targetLibrary.getName()));
-                if(!file.exists()){
+                if (!file.exists()) {
                     isOK = false;
                 }
             }
         }
         //检查Jar主文件
-        if(FileTool.isFileExists(minecraft_version_path + versionSetting.getId() + "/" +versionSetting.getId() + ".json")){
+        if (FileTool.isFileExists(minecraft_version_path + versionSetting.getId() + "/" + versionSetting.getId() + ".json")) {
             // file check pass.
-        }else{
-            isOK =false;
+        } else {
+            isOK = false;
         }
 
         //检查资源主文件
@@ -157,16 +163,20 @@ public class ReadyToStart {
         return isOK;
     }
 
-    /**【检查架构兼容性】**/
-    private boolean CheckFramework(){
+    /**
+     * 【检查架构兼容性】
+     **/
+    private boolean CheckFramework() {
         String abi = null;
         abi = Build.SUPPORTED_ABIS[0];
         //TODO:暂时不知道会输出什么
         return true;
     }
 
-    /**【获得启动参数】**/
-    private String[] MakeStartCmd(boolean forgeMode){
+    /**
+     * 【获得启动参数】
+     **/
+    private String[] MakeStartCmd(boolean forgeMode) {
         //java虚拟机的路径
         String Java_Args = runtimePath + "/j2re-image/bin/java";
 
@@ -182,11 +192,11 @@ public class ReadyToStart {
         String JVM_ClassPath = "-cp";
         String JVM_ClassPath_Info;
         String JVM_ClassPath_Runtime;
-        if(versionSetting.getMinimumLauncherVersion() >= 21){
+        if (versionSetting.getMinimumLauncherVersion() >= 21) {
             //这是1.13.1以及之后的处理方法
             JVM_ClassPath_Runtime = runtimePath + "/lwjgl3/lwjgl-jemalloc.jar:" + runtimePath + "/lwjgl3/lwjgl-tinyfd.jar:" + runtimePath + "/lwjgl3/lwjgl-opengl.jar:" + runtimePath + "/lwjgl3/lwjgl-openal.jar:" + runtimePath + "/lwjgl3/lwjgl-glfw.jar:" + runtimePath + "/lwjgl3/lwjgl-stb.jar:" + runtimePath + "/lwjgl3/lwjgl.jar:";
             JVM_java_library_path = "-Djava.library.path=" + runtimePath + "/j2re-image/lib/aarch32/jli:" + runtimePath + "/j2re-image/lib/aarch32:" + runtimePath + "/lwjgl3:" + runtimePath;
-        }else{
+        } else {
             //这是1.13.1之前的处理方法
             JVM_ClassPath_Runtime = runtimePath + "/lwjgl2/lwjgl_util.jar:" + runtimePath + "/lwjgl2/lwjgl.jar:";
             JVM_java_library_path = "-Djava.library.path=" + runtimePath + "/j2re-image/lib/aarch32/jli:" + runtimePath + "/j2re-image/lib/aarch32:" + runtimePath + "/lwjgl2:" + runtimePath;
@@ -203,16 +213,16 @@ public class ReadyToStart {
 
         ArrayList<String> DependentLibrariesPaths = new ArrayList<String>();
 
-        if(forgeMode){
+        if (forgeMode) {
             File jar = new File(minecraft_version_path + versionSetting.getInheritsFrom() + "/" + versionSetting.getInheritsFrom() + ".jar");
             String jarPath;
-            if(jar.exists()){
+            if (jar.exists()) {
                 jarPath = minecraft_version_path + versionSetting.getInheritsFrom() + "/" + versionSetting.getInheritsFrom() + ".jar";
-            }else{
+            } else {
                 jarPath = minecraft_version_path + versionSetting.getId() + "/" + versionSetting.getId() + ".jar";
             }
             JVM_ClassPath_Info = JVM_ClassPath_Runtime + GetClassPathArgs(versionSetting.getLibraries()) + GetClassPathArgs(versionSettingS.getLibraries()) + jarPath;
-        }else{
+        } else {
             JVM_ClassPath_Info = JVM_ClassPath_Runtime + GetClassPathArgs(versionSetting.getLibraries()) + minecraft_version_path + versionSetting.getId() + "/" + versionSetting.getId() + ".jar";
         }
         JVM_Args.add(JVM_ClassPath);
@@ -224,11 +234,11 @@ public class ReadyToStart {
         String MinecraftExtraArgs = launcherSetting.getConfigurations().getMinecraftArgs();
         String MinecraftWindowArgs = "--width ${window_width} --height ${window_height}";
         String Minecraft_arguements = "";
-            //首先要判断version是1.13.1之前的结构还是1.13.1之后的结构,用于处理两种不同的arguement结构
-        if(versionSetting.getMinimumLauncherVersion() >= 21){
+        //首先要判断version是1.13.1之前的结构还是1.13.1之后的结构,用于处理两种不同的arguement结构
+        if (versionSetting.getMinimumLauncherVersion() >= 21) {
             //这是1.13.1以及之后的处理方法
             Minecraft_arguements = ConvertJsStringModleToJavaStringModle(ConvertArgumentsToMinecraftArguments());
-        }else{
+        } else {
             //这是1.13.1之前的处理方法
             Minecraft_arguements = ConvertJsStringModleToJavaStringModle(versionSetting.getMinecraftArguments());
         }
@@ -245,7 +255,7 @@ public class ReadyToStart {
         CommandTemp.addAll(Minecraft_Args);
 
         String[] Command = new String[CommandTemp.size()];
-        for(int i = 0; i < Command.length;i++){
+        for (int i = 0; i < Command.length; i++) {
             Command[i] = CommandTemp.get(i);
         }
 
@@ -253,41 +263,43 @@ public class ReadyToStart {
 
     }
 
-    /**【将包含JS字符串占位符的字符串转化为转义后的Java字符串】**/
-    private String ConvertJsStringModleToJavaStringModle(String mString){
+    /**
+     * 【将包含JS字符串占位符的字符串转化为转义后的Java字符串】
+     **/
+    private String ConvertJsStringModleToJavaStringModle(String mString) {
         String JsString = mString;
         String JavaString;
         String tempString = "";
-        HashMap<String , String> ArgsMap = new HashMap<String ,String>();
+        HashMap<String, String> ArgsMap = new HashMap<String, String>();
         SettingJson.Accounts account = GetUserFromLauncherSetting();
 
         //需要转义的键名-键值
-        ArgsMap.put("{auth_player_name}",account.getUsername());
-        ArgsMap.put("{auth_uuid}",account.getUuid());
-        ArgsMap.put("{auth_access_token}",account.getAccessToken());
-        ArgsMap.put("{auth_session}","mojang");
-        ArgsMap.put("{user_properties}","{}");
-        ArgsMap.put("{user_type}","mojang");
-        ArgsMap.put("{assets_index_name}",versionSetting.getAssets());
-        ArgsMap.put("{assets_root}",minecraft_assets_path);
-        ArgsMap.put("{game_directory}",minecraft_home_path);
-        ArgsMap.put("{game_assets}",versionSetting.getAssets());
-        ArgsMap.put("{version_name}","\"" + "MCinaBox-" + MCinaBox_Version + "\"");
-        ArgsMap.put("{version_type}",versionSetting.getType());
-        ArgsMap.put("{window_width}",Integer.toString(context.getResources().getDisplayMetrics().widthPixels));
-        ArgsMap.put("{window_height}",Integer.toString(context.getResources().getDisplayMetrics().heightPixels));
+        ArgsMap.put("{auth_player_name}", account.getUsername());
+        ArgsMap.put("{auth_uuid}", account.getUuid());
+        ArgsMap.put("{auth_access_token}", account.getAccessToken());
+        ArgsMap.put("{auth_session}", "mojang");
+        ArgsMap.put("{user_properties}", "{}");
+        ArgsMap.put("{user_type}", "mojang");
+        ArgsMap.put("{assets_index_name}", versionSetting.getAssets());
+        ArgsMap.put("{assets_root}", minecraft_assets_path);
+        ArgsMap.put("{game_directory}", minecraft_home_path);
+        ArgsMap.put("{game_assets}", versionSetting.getAssets());
+        ArgsMap.put("{version_name}", "\"" + "MCinaBox-" + MCinaBox_Version + "\"");
+        ArgsMap.put("{version_type}", versionSetting.getType());
+        ArgsMap.put("{window_width}", Integer.toString(context.getResources().getDisplayMetrics().widthPixels));
+        ArgsMap.put("{window_height}", Integer.toString(context.getResources().getDisplayMetrics().heightPixels));
 
 
-        for(int i = 0;i < JsString.length();i++){
-            if(JsString.charAt(i) == '$'){
+        for (int i = 0; i < JsString.length(); i++) {
+            if (JsString.charAt(i) == '$') {
                 String tempString2 = "";
-                do{
+                do {
                     i++;
                     tempString2 = tempString2 + JsString.charAt(i);
-                }while(JsString.charAt(i) != '}');
+                } while (JsString.charAt(i) != '}');
                 tempString = tempString + ArgsMap.get(tempString2);
-                Log.e("StartGameCheck",tempString2);
-            }else{
+                Log.e("StartGameCheck", tempString2);
+            } else {
                 tempString = tempString + JsString.charAt(i);
             }
         }
@@ -296,11 +308,13 @@ public class ReadyToStart {
         return JavaString;
     }
 
-    /**【获取用户信息】**/
-    private SettingJson.Accounts GetUserFromLauncherSetting(){
+    /**
+     * 【获取用户信息】
+     **/
+    private SettingJson.Accounts GetUserFromLauncherSetting() {
 
         SettingJson.Accounts[] accounts = launcherSetting.getAccounts();
-        for(SettingJson.Accounts targetAccount : accounts) {
+        for (SettingJson.Accounts targetAccount : accounts) {
             if (targetAccount.isSelected()) {
                 return targetAccount;
             }
@@ -308,8 +322,10 @@ public class ReadyToStart {
         return null;
     }
 
-    /**【获取启动器设置信息】**/
-    private SettingJson GetLauncherSettingFromFile(){
+    /**
+     * 【获取启动器设置信息】
+     **/
+    private SettingJson GetLauncherSettingFromFile() {
         Gson gson = new Gson();
         InputStream inputStream;
         Reader reader = null;
@@ -321,27 +337,31 @@ public class ReadyToStart {
             reader = new InputStreamReader(inputStream);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-            Log.e("LoadSetting",e.toString());
+            Log.e("LoadSetting", e.toString());
         }
 
         launcherSetting = new Gson().fromJson(reader, SettingJson.class);
         return launcherSetting;
     }
 
-    /**【根据启动器设置初始化必要的变量】**/
-    private void InitSomeSettngs(){
+    /**
+     * 【根据启动器设置初始化必要的变量】
+     **/
+    private void InitSomeSettngs() {
         SettingJson Setting = GetLauncherSettingFromFile();
         forceRootRuntime = true;
 
-        if (Setting.getLocalization().equals("public")){
+        if (Setting.getLocalization().equals("public")) {
             MCHome = MCINABOX_DATA_PUBLIC;
-        }else if(Setting.getLocalization().equals("private")){
+        } else if (Setting.getLocalization().equals("private")) {
             MCHome = MCINABOX_DATA_PRIVATE;
         }
     }
 
-    /**【将ArgsModel对象序列化得到Intent】**/
-    private Intent MakePushIntent(){
+    /**
+     * 【将ArgsModel对象序列化得到Intent】
+     **/
+    private Intent MakePushIntent() {
         InitSomeSettngs();
         ArgsJson argsModel = new ArgsJson();
         argsModel.setArgs(CMD);
@@ -349,25 +369,27 @@ public class ReadyToStart {
         argsModel.setKeyboardName(KeyboardFileName);
         argsModel.setHome(MCHome);
 
-        Intent intent ;
-        if(versionSetting.getMinimumLauncherVersion() >= 21){
+        Intent intent;
+        if (versionSetting.getMinimumLauncherVersion() >= 21) {
             //这是1.13.1以及之后的处理方法
-            intent= new Intent(context, cosine.boat.version3.LauncherActivity.class);
-        }else{
+            intent = new Intent(context, cosine.boat.version3.LauncherActivity.class);
+        } else {
             //这是1.13.1之前的处理方法
-            intent= new Intent(context, cosine.boat.LauncherActivity.class);
+            intent = new Intent(context, cosine.boat.LauncherActivity.class);
         }
-        intent.putExtra("LauncherConfig",argsModel);
+        intent.putExtra("LauncherConfig", argsModel);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
         return intent;
     }
 
-    /**【将MC1.13的Arguments对象转化为MinecraftArguments字符串】**/
-    private String ConvertArgumentsToMinecraftArguments(){
+    /**
+     * 【将MC1.13的Arguments对象转化为MinecraftArguments字符串】
+     **/
+    private String ConvertArgumentsToMinecraftArguments() {
         String minecraftarguments = "";
-        for(int i = 0;i < versionSetting.getArguments().getGame().length ; i++ ){
-            if(versionSetting.getArguments().getGame()[i] instanceof String) {
+        for (int i = 0; i < versionSetting.getArguments().getGame().length; i++) {
+            if (versionSetting.getArguments().getGame()[i] instanceof String) {
                 if (i == versionSetting.getArguments().getGame().length - 1) {
                     minecraftarguments = minecraftarguments + versionSetting.getArguments().getGame()[i];
                 } else {
@@ -378,42 +400,46 @@ public class ReadyToStart {
         return minecraftarguments;
     }
 
-    /**【以空格来分割MinecraftArgument为字符串数组】**/
-    private String[] SplitMinecraftArgument(String Str){
+    /**
+     * 【以空格来分割MinecraftArgument为字符串数组】
+     **/
+    private String[] SplitMinecraftArgument(String Str) {
         return Str.split(" ");
     }
 
-    /**【不加载lwjgl和glfw】**/
-    private boolean IsSpecialFile(String name){
+    /**
+     * 【不加载lwjgl和glfw】
+     **/
+    private boolean IsSpecialFile(String name) {
         String packname = "";
-        String[] libraries = {"lwjgl","lwjgl_util","lwjgl-platform",
-                "lwjgl-egl","lwjgl-glfw","lwjgl-jemalloc",
-                "lwjgl-openal","lwjgl-opengl","lwjgl-opengles",
-                "lwjgl-stb","lwjgl-tinyfd", "jinput-platform", "twitch-platform","twitch-external-platform"};
+        String[] libraries = {"lwjgl", "lwjgl_util", "lwjgl-platform",
+                "lwjgl-egl", "lwjgl-glfw", "lwjgl-jemalloc",
+                "lwjgl-openal", "lwjgl-opengl", "lwjgl-opengles",
+                "lwjgl-stb", "lwjgl-tinyfd", "jinput-platform", "twitch-platform", "twitch-external-platform"};
         boolean result = false;
-        int a =0;
-        for(int i = 0; i < name.length() ;i++){
-            if(name.charAt(i) == ':'){
+        int a = 0;
+        for (int i = 0; i < name.length(); i++) {
+            if (name.charAt(i) == ':') {
                 a = i + 1;
                 break;
             }
         }
-        for(;a < name.length() ;a++){
-            if (name.charAt(a) != ':'){
+        for (; a < name.length(); a++) {
+            if (name.charAt(a) != ':') {
                 packname = packname + name.charAt(a);
-            }else{
+            } else {
                 break;
             }
         }
-        for(String str : libraries){
-            if(str.equals(packname)){
+        for (String str : libraries) {
+            if (str.equals(packname)) {
                 return true;
             }
         }
         return false;
     }
 
-    private String GetLibrariesPath(String name){
+    private String GetLibrariesPath(String name) {
         String packageName;
         String libraryName;
         String versionName;
@@ -424,11 +450,11 @@ public class ReadyToStart {
         libraryName = Name[1];
         versionName = Name[2];
 
-        String dirPath = minecraft_libraries_path ;
-        for(int i =0;i < packageName.length();i++){
-            if(packageName.charAt(i) == '.'){
+        String dirPath = minecraft_libraries_path;
+        for (int i = 0; i < packageName.length(); i++) {
+            if (packageName.charAt(i) == '.') {
                 dirPath = dirPath + "/";
-            }else{
+            } else {
                 dirPath = dirPath + packageName.charAt(i);
             }
         }
@@ -441,20 +467,20 @@ public class ReadyToStart {
         return filePath;
     }
 
-    private String GetClassPathArgs(VersionJson.DependentLibrary[] libraries){
+    private String GetClassPathArgs(VersionJson.DependentLibrary[] libraries) {
         String cp = "";
-        for(VersionJson.DependentLibrary library : libraries){
-            if(!IsSpecialFile(library.getName())){
+        for (VersionJson.DependentLibrary library : libraries) {
+            if (!IsSpecialFile(library.getName())) {
                 cp = cp + GetLibrariesPath(library.getName()) + ":";
             }
         }
         return cp;
     }
 
-    private boolean IsForgeMode(){
-        if(versionSetting.getInheritsFrom() != null){
+    private boolean IsForgeMode() {
+        if (versionSetting.getInheritsFrom() != null) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }

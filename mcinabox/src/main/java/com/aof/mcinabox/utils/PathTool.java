@@ -1,31 +1,30 @@
 package com.aof.mcinabox.utils;
 
 
-
 public class PathTool {
-    public PathTool(String datapath){
+    public PathTool(String datapath) {
         super();
         initPath(datapath);
     }
 
-    public PathTool(String type,boolean auto){
+    public PathTool(String type, boolean auto) {
         super();
-        if(type.equals("private")){
+        if (type.equals("private")) {
             initPath(com.aof.mcinabox.DataPathManifest.MCINABOX_DATA_PRIVATE);
-        }else{
+        } else {
             initPath(com.aof.mcinabox.DataPathManifest.MCINABOX_DATA_PUBLIC);
         }
     }
 
-    private void initPath(String dataPath){
+    private void initPath(String dataPath) {
         MCinaBox_Home = dataPath;
         MINECRAFT_URL = "";
-        MINECRAFT_ASSETS_URL ="";
+        MINECRAFT_ASSETS_URL = "";
         MINECRAFT_DIR = MCinaBox_Home + "/.minecraft/";
         MINECRAFT_TEMP = MINECRAFT_DIR + "Temp/";
         MINECRAFT_VERSION_DIR = MINECRAFT_DIR + "versions/";
         MINECRAFT_LIBRARIES_DIR = MINECRAFT_DIR + "libraries/";
-        MINECRAFT_ASSETS_DIR = MINECRAFT_DIR+"assets/";
+        MINECRAFT_ASSETS_DIR = MINECRAFT_DIR + "assets/";
         VERSION_MANIFEST_URL = MINECRAFT_URL + "/mc/game/version_manifest.json";
     }
 
@@ -41,20 +40,67 @@ public class PathTool {
     //部分文件
     String VERSION_MANIFEST_URL; //version_manifest.json文件下载地址
 
-    public String getMINECRAFT_ASSETS_URL() { return MINECRAFT_ASSETS_URL; }
-    public void setMINECRAFT_ASSETS_URL(String MINECRAFT_ASSETS_URL) { this.MINECRAFT_ASSETS_URL = MINECRAFT_ASSETS_URL; }
-    public void setMINECRAFT_LIBRARIES_DIR(String MINECRAFT_LIBRARIES_DIR) { this.MINECRAFT_LIBRARIES_DIR = MINECRAFT_LIBRARIES_DIR; }
-    public String getMINECRAFT_ASSETS_DIR() { return MINECRAFT_ASSETS_DIR;}
-    public void setMINECRAFT_ASSETS_DIR(String MINECRAFT_ASSETS_DIR) { this.MINECRAFT_ASSETS_DIR = MINECRAFT_ASSETS_DIR; }
-    public String getMINECRAFT_TEMP(){ return MINECRAFT_TEMP; }
-    public void setMINECRAFT_TEMP(String MINECRAFT_TEMP){this.MINECRAFT_TEMP = MINECRAFT_TEMP;}
-    public String getMINECRAFT_URL() { return MINECRAFT_URL; }
-    public void setMINECRAFT_URL(String MINECRAFT_URL) { this.MINECRAFT_URL = MINECRAFT_URL; }
-    public String getVERSION_MANIFEST_URL() { return VERSION_MANIFEST_URL; }
-    public void setVERSION_MANIFEST_URL(String VERSION_MANIFEST_URL) { this.VERSION_MANIFEST_URL = VERSION_MANIFEST_URL; }
-    public String getMINECRAFT_DIR() { return MINECRAFT_DIR; }
-    public void setMINECRAFT_DIR(String MINECRAFT_DIR) { this.MINECRAFT_DIR = MINECRAFT_DIR; }
-    public String getMINECRAFT_VERSION_DIR() { return MINECRAFT_VERSION_DIR; }
-    public void setMINECRAFT_VERSION_DIR(String MINECRAFT_VERSION_DIR) { this.MINECRAFT_VERSION_DIR = MINECRAFT_VERSION_DIR; }
-    public String getMINECRAFT_LIBRARIES_DIR() {return MINECRAFT_LIBRARIES_DIR;}
+    public String getMINECRAFT_ASSETS_URL() {
+        return MINECRAFT_ASSETS_URL;
+    }
+
+    public void setMINECRAFT_ASSETS_URL(String MINECRAFT_ASSETS_URL) {
+        this.MINECRAFT_ASSETS_URL = MINECRAFT_ASSETS_URL;
+    }
+
+    public void setMINECRAFT_LIBRARIES_DIR(String MINECRAFT_LIBRARIES_DIR) {
+        this.MINECRAFT_LIBRARIES_DIR = MINECRAFT_LIBRARIES_DIR;
+    }
+
+    public String getMINECRAFT_ASSETS_DIR() {
+        return MINECRAFT_ASSETS_DIR;
+    }
+
+    public void setMINECRAFT_ASSETS_DIR(String MINECRAFT_ASSETS_DIR) {
+        this.MINECRAFT_ASSETS_DIR = MINECRAFT_ASSETS_DIR;
+    }
+
+    public String getMINECRAFT_TEMP() {
+        return MINECRAFT_TEMP;
+    }
+
+    public void setMINECRAFT_TEMP(String MINECRAFT_TEMP) {
+        this.MINECRAFT_TEMP = MINECRAFT_TEMP;
+    }
+
+    public String getMINECRAFT_URL() {
+        return MINECRAFT_URL;
+    }
+
+    public void setMINECRAFT_URL(String MINECRAFT_URL) {
+        this.MINECRAFT_URL = MINECRAFT_URL;
+    }
+
+    public String getVERSION_MANIFEST_URL() {
+        return VERSION_MANIFEST_URL;
+    }
+
+    public void setVERSION_MANIFEST_URL(String VERSION_MANIFEST_URL) {
+        this.VERSION_MANIFEST_URL = VERSION_MANIFEST_URL;
+    }
+
+    public String getMINECRAFT_DIR() {
+        return MINECRAFT_DIR;
+    }
+
+    public void setMINECRAFT_DIR(String MINECRAFT_DIR) {
+        this.MINECRAFT_DIR = MINECRAFT_DIR;
+    }
+
+    public String getMINECRAFT_VERSION_DIR() {
+        return MINECRAFT_VERSION_DIR;
+    }
+
+    public void setMINECRAFT_VERSION_DIR(String MINECRAFT_VERSION_DIR) {
+        this.MINECRAFT_VERSION_DIR = MINECRAFT_VERSION_DIR;
+    }
+
+    public String getMINECRAFT_LIBRARIES_DIR() {
+        return MINECRAFT_LIBRARIES_DIR;
+    }
 }

@@ -23,12 +23,12 @@ import static com.aof.sharedmodule.Data.DataPathManifest.MCINABOX_TEMP;
 
 public class InstallVersionUI extends StandUI implements RadioGroup.OnCheckedChangeListener {
 
-    public InstallVersionUI(Activity context){
+    public InstallVersionUI(Activity context) {
         super(context);
         initUI();
     }
 
-    public InstallVersionUI(Activity context,SettingJson setting){
+    public InstallVersionUI(Activity context, SettingJson setting) {
         this(context);
         refreshUI(setting);
     }
@@ -66,8 +66,8 @@ public class InstallVersionUI extends StandUI implements RadioGroup.OnCheckedCha
             }
         });
 
-        views = new View[]{buttonBack,buttonRefresh,buttonDownload};
-        for(View v : views){
+        views = new View[]{buttonBack, buttonRefresh, buttonDownload};
+        for (View v : views) {
             v.setOnClickListener(clickListener);
         }
     }
@@ -194,17 +194,17 @@ public class InstallVersionUI extends StandUI implements RadioGroup.OnCheckedCha
     private View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            if(v == buttonBack){
-                ((MainActivity)mContext).backFromHere();
+            if (v == buttonBack) {
+                ((MainActivity) mContext).backFromHere();
             }
-            if(v == buttonRefresh){
+            if (v == buttonRefresh) {
                 MainActivity context = (MainActivity) mContext;
                 DownloaderDialog dialogDownloader = context.dialogDownloader;
                 //What will happen if click buttonRefresh many times before one finished?
                 //Maybe we need a way to limitation the too much click.
                 dialogDownloader.startDownloadManifest();
             }
-            if(v == buttonDownload){
+            if (v == buttonDownload) {
                 DownloadSelectedVersion();
             }
         }

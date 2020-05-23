@@ -5,6 +5,7 @@
     <uses-feature
         android:glEsVersion="0x00020000"
         android:required="true" />
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -20,9 +21,12 @@
         android:largeHeap="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".VirtualKeyBoardActivity" android:screenOrientation="sensorLandscape"/>
+        <activity
+            android:name=".VirtualKeyBoardActivity"
+            android:screenOrientation="sensorLandscape" />
 
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".MainActivity"
             android:screenOrientation="sensorLandscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,7 +35,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="cosine.boat.BoatClientActivity"
+        <activity
+            android:name="cosine.boat.BoatClientActivity"
             android:theme="@style/AppTheme"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="sensorLandscape">
@@ -47,7 +52,8 @@
 
         </activity>
 
-        <activity android:name="cosine.boat.version3.BoatClientActivity"
+        <activity
+            android:name="cosine.boat.version3.BoatClientActivity"
             android:theme="@style/AppTheme"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="sensorLandscape">
@@ -65,10 +71,10 @@
 
         <service
             android:name="ru.ivanarh.jndcrash.NDCrashService"
-            android:process=":reportprocess"/>
+            android:process=":reportprocess" />
         <service
             android:name="cosine.boat.logcat.LogcatService"
-            android:process=":logcatprocess"/>
+            android:process=":logcatprocess" />
 
     </application>
 

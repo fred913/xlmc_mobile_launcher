@@ -19,12 +19,12 @@ import java.util.ArrayList;
 
 public class GamelistUI extends StandUI {
 
-    public GamelistUI(Activity context){
+    public GamelistUI(Activity context) {
         super(context);
         initUI();
     }
 
-    public GamelistUI(Activity context,SettingJson setting){
+    public GamelistUI(Activity context, SettingJson setting) {
         this(context);
         refreshUI(setting);
     }
@@ -45,8 +45,8 @@ public class GamelistUI extends StandUI {
         buttonGameSetting = layout_gamelist.findViewById(R.id.gamelist_button_setting);
         listLocalVersions = layout_gamelist.findViewById(R.id.list_local_version);
 
-        views = new View[]{buttonGameSetting,buttonInstallGame,buttonRefreshList};
-        for(View v : views){
+        views = new View[]{buttonGameSetting, buttonInstallGame, buttonRefreshList};
+        for (View v : views) {
             v.setOnClickListener(clickListener);
         }
     }
@@ -71,17 +71,17 @@ public class GamelistUI extends StandUI {
         return layout_gamelist.getVisibility();
     }
 
-    private View.OnClickListener clickListener = new View.OnClickListener(){
+    private View.OnClickListener clickListener = new View.OnClickListener() {
 
         @Override
         public void onClick(View v) {
-            if(v == buttonGameSetting) {
+            if (v == buttonGameSetting) {
                 ((MainActivity) mContext).switchUIs(((MainActivity) mContext).uiGameSetting, mContext.getString(R.string.title_setting_minecraft) + " - " + mContext.getString(R.string.title_gamelist));
             }
-            if(v == buttonInstallGame){
-                ((MainActivity)mContext).switchUIs(((MainActivity) mContext).uiInstallVersion,mContext.getString(R.string.title_install_newversion) + " - " + mContext.getString(R.string.title_gamelist));
+            if (v == buttonInstallGame) {
+                ((MainActivity) mContext).switchUIs(((MainActivity) mContext).uiInstallVersion, mContext.getString(R.string.title_install_newversion) + " - " + mContext.getString(R.string.title_gamelist));
             }
-            if(v == buttonRefreshList){
+            if (v == buttonRefreshList) {
 
             }
         }
@@ -98,13 +98,14 @@ public class GamelistUI extends StandUI {
     private ArrayList<String> versionIdList;
 
     public void refreshLocalVersionList(SettingJson setting) {
-        PathTool pathTool = new PathTool(setting.getLocalization(),true);
+        PathTool pathTool = new PathTool(setting.getLocalization(), true);
         ArrayList<String> versionIdListTmp;
         try {
             versionIdListTmp = FileTool.listChildDirFromTargetDir(pathTool.getMINECRAFT_VERSION_DIR());
-        }catch(NullPointerException e){
+        } catch (NullPointerException e) {
             e.printStackTrace();
-            versionIdListTmp = new ArrayList<String>(){};
+            versionIdListTmp = new ArrayList<String>() {
+            };
         }
         ArrayList<String> versionIdList = new ArrayList<String>();
         ArrayList<LocalVersionListBean> mlocalversionList = new ArrayList<LocalVersionListBean>();
@@ -119,14 +120,14 @@ public class GamelistUI extends StandUI {
             mlocalversionList.add(localVersionListBean);
         }
 
-        if(listLocalVersions.getAdapter() == null){
+        if (listLocalVersions.getAdapter() == null) {
             this.localversionList = mlocalversionList;
             LocalVersionListAdapter localversionlistadapter = new LocalVersionListAdapter(mContext, this.localversionList);
             listLocalVersions.setAdapter(localversionlistadapter);
-        }else{
+        } else {
             this.localversionList.clear();
             this.localversionList.addAll(mlocalversionList);
-            ((BaseAdapter)listLocalVersions.getAdapter()).notifyDataSetChanged();
+            ((BaseAdapter) listLocalVersions.getAdapter()).notifyDataSetChanged();
         }
 
     }

@@ -3,10 +3,12 @@
     android:layout_width="250dp"
     android:layout_height="wrap_content"
     android:background="@drawable/background_dialog_noalpha">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -19,6 +21,7 @@
             android:layout_height="1px"
             android:layout_marginRight="5dp"
             android:background="@android:color/background_dark" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -28,12 +31,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/puredark"
-                android:text="@string/tips_keybard_choose"/>
+                android:text="@string/tips_keybard_choose" />
+
             <Spinner
                 android:id="@+id/dialog_spinner_modelselected"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </LinearLayout>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -46,21 +51,24 @@
             android:layout_height="1px"
             android:layout_marginRight="5dp"
             android:background="@android:color/background_dark" />
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/puredark"
-                android:text="@string/tips_keyboard_path"/>
+                android:text="@string/tips_keyboard_path" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/title_keyboard_path"
                 android:textColor="@color/puredark"
-                android:textIsSelectable="true"/>
+                android:textIsSelectable="true" />
         </LinearLayout>
 
         <TextView
@@ -75,12 +83,14 @@
             android:layout_height="1px"
             android:layout_marginRight="5dp"
             android:background="@android:color/background_dark" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:orientation="horizontal">
+
             <Button
                 android:id="@+id/dialog_button_load"
                 android:layout_width="60dp"
@@ -89,7 +99,8 @@
                 android:background="@drawable/background_button"
                 android:textColor="@color/colorAccent"
                 android:layout_gravity="center"
-                android:text="@string/tips_ok"/>
+                android:text="@string/tips_ok" />
+
             <Button
                 android:id="@+id/dialog_button_cancelload"
                 android:layout_width="60dp"
@@ -98,9 +109,8 @@
                 android:background="@drawable/background_button"
                 android:textColor="@color/colorAccent"
                 android:layout_gravity="center"
-                android:text="@string/tips_no"/>
+                android:text="@string/tips_no" />
         </LinearLayout>
-
 
 
     </LinearLayout>

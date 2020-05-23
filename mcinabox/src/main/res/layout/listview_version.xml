@@ -25,7 +25,7 @@
             android:layout_margin="10dp"
             android:layout_gravity="center"
             android:src="@drawable/grass_2d"
-            android:padding="5dp"/>
+            android:padding="5dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -34,7 +34,8 @@
             android:layout_marginLeft="2dp"
             android:textSize="15sp"
             android:textColor="@color/puredark"
-            android:text="@string/title_version"/>
+            android:text="@string/title_version" />
+
         <TextView
             android:id="@+id/versionlist_text_versionId"
             android:layout_width="0dp"
@@ -43,7 +44,7 @@
             android:textColor="@color/puredark"
             android:textSize="15dp"
             android:layout_weight="1"
-            android:layout_marginLeft="2dp"/>
+            android:layout_marginLeft="2dp" />
 
         <Button
             android:id="@+id/gamelist_button_removeversion"

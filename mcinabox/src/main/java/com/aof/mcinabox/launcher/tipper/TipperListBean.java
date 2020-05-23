@@ -18,12 +18,15 @@ public class TipperListBean {
     public String getTipper_info() {
         return tipper_info;
     }
+
     public void setTipper_info(String tipper_info) {
         this.tipper_info = tipper_info;
     }
+
     public Context getContext() {
         return context;
     }
+
     public void setContext(Context context) {
         this.context = context;
     }

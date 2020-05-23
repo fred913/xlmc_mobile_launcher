@@ -25,16 +25,17 @@ import java.util.ArrayList;
 
 public class DownloaderDialog extends StandDialog {
 
-    public DownloaderDialog(MainActivity context, int layoutID){
-        super(context,layoutID);
+    public DownloaderDialog(MainActivity context, int layoutID) {
+        super(context, layoutID);
     }
 
-    private ProgressBar downloader_total_process,downloader_current_process;
-    private  TextView downloader_total_count,downloader_current_count,downloader_current_task,downloader_target_version;
-    private Button download_ok,download_cancel;
+    private ProgressBar downloader_total_process, downloader_current_process;
+    private TextView downloader_total_count, downloader_current_count, downloader_current_task, downloader_target_version;
+    private Button download_ok, download_cancel;
     private ImageView finishMark;
     private FileDownloadQueueSet queueSet;
-    public com.aof.mcinabox.minecraft.DownloadMinecraft mDownloadMinecraft =  new com.aof.mcinabox.minecraft.DownloadMinecraft();;
+    public com.aof.mcinabox.minecraft.DownloadMinecraft mDownloadMinecraft = new com.aof.mcinabox.minecraft.DownloadMinecraft();
+    ;
 
 
     @Override
@@ -52,13 +53,13 @@ public class DownloaderDialog extends StandDialog {
 
     }
 
-    private void initDownloader(){
+    private void initDownloader() {
         //初始化下载器
         FileDownloader.setup(mContext);
         queueSet = new FileDownloadQueueSet(downloadListener);
     }
 
-    private void initDownloaderUI(String id){
+    private void initDownloaderUI(String id) {
         downloader_total_count.setVisibility(View.VISIBLE);
         finishMark.setVisibility(View.GONE);
         download_ok.setClickable(false);
@@ -70,13 +71,13 @@ public class DownloaderDialog extends StandDialog {
         downloader_total_count.setText("0/0");
     }
 
-    private void stateDownloaderUI(String task,String totalCount,int totalProcess,int currentProcess,boolean finished){
+    private void stateDownloaderUI(String task, String totalCount, int totalProcess, int currentProcess, boolean finished) {
         downloader_current_task.setText(task);
         downloader_total_count.setText(totalCount);
         downloader_total_process.setProgress(totalProcess);
         downloader_current_count.setText(currentProcess + "%");
         downloader_current_process.setProgress(currentProcess);
-        if(finished){
+        if (finished) {
             download_ok.setClickable(true);
             finishMark.setVisibility(View.VISIBLE);
         }
@@ -86,37 +87,40 @@ public class DownloaderDialog extends StandDialog {
     private int finishCount;
     private int totalProcess;
     private ArrayList<BaseDownloadTask> downloadTasks = new ArrayList<BaseDownloadTask>();
-    public void startDownloadMinecraft(String id){
+
+    public void startDownloadMinecraft(String id) {
         initDownloaderUI(id);
         minecraftId = id;
         finishCount = 0;
         downloadTasks.clear();
         show();
         totalProcess = 1;
-        ChangeDownloadPrcess(1,0);
-        StartDownload(1,id);
+        ChangeDownloadPrcess(1, 0);
+        StartDownload(1, id);
     }
-    public void startDownloadForge(String id){
+
+    public void startDownloadForge(String id) {
         initDownloaderUI(id);
         minecraftId = id;
         finishCount = 0;
         downloadTasks.clear();
         show();
         totalProcess = 7;
-        ChangeDownloadPrcess(7,0);
-        StartDownload(7,id);
-    }
-    public void startDownloadManifest(){
-        downloadTasks.add(mDownloadMinecraft.createVersionManifestDownloadTask());
-        StartDownloadQueueSet(queueSet,downloadTasks);
+        ChangeDownloadPrcess(7, 0);
+        StartDownload(7, id);
     }
 
-    private void ChangeDownloadPrcess(int taskId,int currentProcess){
+    public void startDownloadManifest() {
+        downloadTasks.add(mDownloadMinecraft.createVersionManifestDownloadTask());
+        StartDownloadQueueSet(queueSet, downloadTasks);
+    }
+
+    private void ChangeDownloadPrcess(int taskId, int currentProcess) {
         String task = "";
         String totalCount = "";
         int totalProcess = 0;
         boolean finished = false;
-        switch(taskId){
+        switch (taskId) {
             case 1:
                 task = mContext.getString(R.string.tips_download_version_json);
                 totalCount = "1/4";
@@ -156,53 +160,53 @@ public class DownloaderDialog extends StandDialog {
                 fitness_attribute();
                 break;
         }
-        stateDownloaderUI(task,totalCount,totalProcess,currentProcess,finished);
+        stateDownloaderUI(task, totalCount, totalProcess, currentProcess, finished);
     }
 
     private void fitness_attribute() {
         String homePath;
-        if(JsonUtils.getSettingFromFile(DataPathManifest.MCINABOX_FILE_JSON).getLocalization().equals("private")){
+        if (JsonUtils.getSettingFromFile(DataPathManifest.MCINABOX_FILE_JSON).getLocalization().equals("private")) {
             homePath = DataPathManifest.MCINABOX_DATA_PRIVATE;
-        }else{
+        } else {
             homePath = DataPathManifest.MCINABOX_DATA_PUBLIC;
         }
         FileTool.checkFilePath(new File(homePath), true);
         FileTool.checkFilePath(new File(homePath + "/config"), true);
         String config_file = homePath + "/config/splash.properties";
-        if( ! FileTool.isFileExists(config_file)){
+        if (!FileTool.isFileExists(config_file)) {
             FileTool.addFile(config_file);
         }
         FileTool.writeData(config_file, "enabled=false");
     }
 
-    private void StartDownload(int totalProcess,String id){
-        switch(totalProcess){
+    private void StartDownload(int totalProcess, String id) {
+        switch (totalProcess) {
             case 1:
                 downloadTasks.add(mDownloadMinecraft.createVersionJsonDownloadTask(id));
-                StartDownloadQueueSet(queueSet,downloadTasks);
+                StartDownloadQueueSet(queueSet, downloadTasks);
                 break;
             case 2:
                 downloadTasks.add(mDownloadMinecraft.createVersionJarDownloadTask(id));
                 downloadTasks.addAll(mDownloadMinecraft.createLibrariesDownloadTask(id));
-                StartDownloadQueueSet(queueSet,downloadTasks);
+                StartDownloadQueueSet(queueSet, downloadTasks);
                 break;
             case 3:
                 downloadTasks.add(mDownloadMinecraft.createAssetIndexDownloadTask(id));
-                StartDownloadQueueSet(queueSet,downloadTasks);
+                StartDownloadQueueSet(queueSet, downloadTasks);
                 break;
             case 4:
                 downloadTasks.addAll(mDownloadMinecraft.createAssetObjectsDownloadTask(id));
-                StartDownloadQueueSet(queueSet,downloadTasks);
+                StartDownloadQueueSet(queueSet, downloadTasks);
                 break;
             case 7:
                 downloadTasks.addAll(mDownloadMinecraft.createForgeDownloadTask(id));
-                StartDownloadQueueSet(queueSet,downloadTasks);
+                StartDownloadQueueSet(queueSet, downloadTasks);
                 break;
         }
     }
 
     //并行方式执行下载队列
-    private void StartDownloadQueueSet(FileDownloadQueueSet queueSet, ArrayList<BaseDownloadTask> downloadTasks){
+    private void StartDownloadQueueSet(FileDownloadQueueSet queueSet, ArrayList<BaseDownloadTask> downloadTasks) {
         queueSet.downloadTogether(downloadTasks);
         queueSet.start();
     }
@@ -216,8 +220,8 @@ public class DownloaderDialog extends StandDialog {
         @Override
         protected void progress(BaseDownloadTask task, int soFarBytes, int totalBytes) {
 
-            if(totalProcess == 1 || totalProcess == 3){
-                ChangeDownloadPrcess(totalProcess,soFarBytes*100/totalBytes);
+            if (totalProcess == 1 || totalProcess == 3) {
+                ChangeDownloadPrcess(totalProcess, soFarBytes * 100 / totalBytes);
             }
         }
 
@@ -226,7 +230,7 @@ public class DownloaderDialog extends StandDialog {
             //如果完成的任务为清单文件下载，就刷新版本列表
             finishCount++;
 
-            if(task.getFilename().equals("version_manifest.json")){
+            if (task.getFilename().equals("version_manifest.json")) {
                 downloadTasks.clear();
                 //清单文件下载完成后刷新一次列表
                 MainActivity context = (MainActivity) mContext;
@@ -237,28 +241,28 @@ public class DownloaderDialog extends StandDialog {
                 return;
             }
 
-            if(finishCount == downloadTasks.size() && (totalProcess != 7)){
-                if(finishCount == downloadTasks.size() && totalProcess != 4){
+            if (finishCount == downloadTasks.size() && (totalProcess != 7)) {
+                if (finishCount == downloadTasks.size() && totalProcess != 4) {
                     finishCount = 0;
                     downloadTasks.clear();
                     totalProcess++;
-                    StartDownload(totalProcess,minecraftId);
-                }else if(finishCount == downloadTasks.size() && (totalProcess == 4 || totalProcess == 6)){
+                    StartDownload(totalProcess, minecraftId);
+                } else if (finishCount == downloadTasks.size() && (totalProcess == 4 || totalProcess == 6)) {
                     finishCount = 0;
                     downloadTasks.clear();
-                    totalProcess =0;
-                    ChangeDownloadPrcess(5,100);
+                    totalProcess = 0;
+                    ChangeDownloadPrcess(5, 100);
                 }
-            } else if(finishCount == downloadTasks.size()){
+            } else if (finishCount == downloadTasks.size()) {
                 finishCount = 0;
                 downloadTasks.clear();
-                totalProcess =0;
-                ChangeDownloadPrcess(8,100);
+                totalProcess = 0;
+                ChangeDownloadPrcess(8, 100);
 
             }
 
-            if(totalProcess == 2||totalProcess == 4||totalProcess == 5||totalProcess == 7){
-                ChangeDownloadPrcess(totalProcess,(finishCount*100)/downloadTasks.size());
+            if (totalProcess == 2 || totalProcess == 4 || totalProcess == 5 || totalProcess == 7) {
+                ChangeDownloadPrcess(totalProcess, (finishCount * 100) / downloadTasks.size());
             }
         }
 
@@ -270,7 +274,7 @@ public class DownloaderDialog extends StandDialog {
         @Override
         protected void error(BaseDownloadTask task, Throwable e) {
             //任务全部取消
-            Log.e("Downloader",e.toString());
+            Log.e("Downloader", e.toString());
             Toast.makeText(mContext, mContext.getString(R.string.tips_download_failed), Toast.LENGTH_SHORT).show();
             download_cancel.performClick();
         }
@@ -281,14 +285,14 @@ public class DownloaderDialog extends StandDialog {
         }
     };
 
-    private View.OnClickListener clickListener = new View.OnClickListener(){
+    private View.OnClickListener clickListener = new View.OnClickListener() {
 
         @Override
         public void onClick(View v) {
-            if(v == download_ok){
+            if (v == download_ok) {
                 dismiss();
             }
-            if(v == download_cancel){
+            if (v == download_cancel) {
                 FileDownloader.getImpl().pauseAll();
                 dismiss();
             }

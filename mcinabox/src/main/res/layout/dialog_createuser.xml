@@ -4,36 +4,42 @@
     android:layout_width="250dp"
     android:layout_height="wrap_content"
     android:background="@drawable/background_dialog_noalpha">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_margin="5dp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/puredark"
-            android:text="@string/title_user_newuser"/>
+            android:text="@string/title_user_newuser" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1px"
             android:layout_marginRight="5dp"
             android:background="@android:color/background_dark" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <TextView
                 android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:textColor="@color/puredark"
-                android:text="@string/title_user_name"/>
+                android:text="@string/title_user_name" />
+
             <EditText
                 android:id="@+id/dialog_edittext_input_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColorHint="#8C8C8C"
-                android:hint="@string/tips_user_namehint"/>
+                android:hint="@string/tips_user_namehint" />
         </LinearLayout>
 
         <LinearLayout
@@ -42,16 +48,18 @@
             android:layout_height="wrap_content"
             android:visibility="gone"
             android:orientation="horizontal">
+
             <TextView
                 android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:textColor="@color/puredark"
-                android:text="@string/title_password"/>
+                android:text="@string/title_password" />
+
             <EditText
                 android:id="@+id/dialog_edittext_input_userpasswd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/tips_user_passwordhint"/>
+                android:hint="@string/tips_user_passwordhint" />
         </LinearLayout>
 
 
@@ -60,6 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:orientation="horizontal">
+
             <Button
                 android:id="@+id/dialog_button_confirm_createuser"
                 android:layout_width="60dp"
@@ -67,11 +76,13 @@
                 android:textColor="@color/colorAccent"
                 android:layout_gravity="center"
                 android:background="@drawable/background_button"
-                android:text="@string/tips_ok"/>
+                android:text="@string/tips_ok" />
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_weight="1" />
+
             <Button
                 android:id="@+id/dialog_button_cancle_createuser"
                 android:layout_width="60dp"
@@ -79,9 +90,8 @@
                 android:textColor="@color/colorAccent"
                 android:layout_gravity="center"
                 android:background="@drawable/background_button"
-                android:text="@string/tips_no"/>
+                android:text="@string/tips_no" />
         </LinearLayout>
-
 
 
     </LinearLayout>

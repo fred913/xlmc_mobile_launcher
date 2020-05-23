@@ -8,12 +8,12 @@ import com.aof.mcinabox.launcher.json.SettingJson;
 
 public class PluginUI extends StandUI {
 
-    public PluginUI(Activity context){
+    public PluginUI(Activity context) {
         super(context);
         initUI();
     }
 
-    public PluginUI(Activity context,SettingJson setting){
+    public PluginUI(Activity context, SettingJson setting) {
         this(context);
         refreshUI(setting);
     }

@@ -10,13 +10,13 @@
         android:layout_gravity="center"
         android:text="@string/title_language"
         android:textColor="@color/puredark"
-        android:layout_margin="5dp"/>
+        android:layout_margin="5dp" />
 
     <ListView
         android:id="@+id/dialog_listview_languages"
         android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:entries="@array/languages"/>
+        android:entries="@array/languages" />
 
 </LinearLayout>

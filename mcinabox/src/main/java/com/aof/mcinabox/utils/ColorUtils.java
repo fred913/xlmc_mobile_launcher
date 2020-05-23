@@ -6,4 +6,5 @@ package com.aof.mcinabox.utils;
  * Used Color工具类（color整型、rgb数组、16进制互相转换）
  */
 
-public class ColorUtils extends com.aof.sharedmodule.Tools.ColorUtils{}
+public class ColorUtils extends com.aof.sharedmodule.Tools.ColorUtils {
+}

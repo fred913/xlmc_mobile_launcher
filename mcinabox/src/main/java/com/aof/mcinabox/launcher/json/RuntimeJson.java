@@ -13,30 +13,39 @@ public class RuntimeJson {
     public String getPackName() {
         return PackName;
     }
+
     public void setPackName(String packName) {
         PackName = packName;
     }
+
     public String getReleaseTime() {
         return ReleaseTime;
     }
+
     public void setReleaseTime(String releaseTime) {
         ReleaseTime = releaseTime;
     }
+
     public String getPlatform() {
         return Platform;
     }
+
     public void setPlatform(String platform) {
         Platform = platform;
     }
+
     public String getJavaVersion() {
         return JavaVersion;
     }
+
     public void setJavaVersion(String javaVersion) {
         JavaVersion = javaVersion;
     }
+
     public String getOpenGLVersion() {
         return OpenGLVersion;
     }
+
     public void setOpenGLVersion(String openGLVersion) {
         OpenGLVersion = openGLVersion;
     }

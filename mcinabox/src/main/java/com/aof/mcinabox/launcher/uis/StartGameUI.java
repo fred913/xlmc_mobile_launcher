@@ -60,7 +60,7 @@ public class StartGameUI extends StandUI {
     @Override
     public void refreshUI(SettingJson setting) {
         refreshLocalVersionList(setting);
-        if(setting.getLastVersion() == null){
+        if (setting.getLastVersion() == null) {
             return;
         }
         if (!(setting.getLastVersion().equals(""))) {
@@ -100,6 +100,7 @@ public class StartGameUI extends StandUI {
      * Refresh loacl verion list.
      **/
     private ArrayList<String> versionIdList;
+
     private void refreshLocalVersionList(SettingJson setting) {
 
         PathTool pathTool = new PathTool(setting.getLocalization(), true);

@@ -3,16 +3,17 @@ package com.aof.mcinabox.utils;
 import java.util.Locale;
 
 public class LanguageUtils {
-    public static boolean checkSystemSameAsLauncher(String launcherLan){
-        if (Locale.getDefault().equals(getLocaleFromConfig(launcherLan))){
+    public static boolean checkSystemSameAsLauncher(String launcherLan) {
+        if (Locale.getDefault().equals(getLocaleFromConfig(launcherLan))) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
-    public static Locale getLocaleFromConfig(String config){
+
+    public static Locale getLocaleFromConfig(String config) {
         Locale mLocale;
-        switch (config){
+        switch (config) {
             case "English(en)":
                 mLocale = Locale.ENGLISH;
                 break;

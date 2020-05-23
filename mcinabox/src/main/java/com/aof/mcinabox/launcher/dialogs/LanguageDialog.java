@@ -15,8 +15,8 @@ import com.aof.mcinabox.utils.LanguageUtils;
 
 public class LanguageDialog extends StandDialog {
 
-    public LanguageDialog(MainActivity context, int layoutID){
-        super(context,layoutID);
+    public LanguageDialog(MainActivity context, int layoutID) {
+        super(context, layoutID);
     }
 
     ListView listLanguages;
@@ -26,9 +26,9 @@ public class LanguageDialog extends StandDialog {
         initUI();
     }
 
-    private void initUI(){
+    private void initUI() {
         listLanguages = findViewById(R.id.dialog_listview_languages);
-        listLanguages.setOnItemClickListener(new ListView.OnItemClickListener(){
+        listLanguages.setOnItemClickListener(new ListView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
                 ChangeLauncherLanguage(listLanguages.getAdapter().getItem(pos).toString());
@@ -37,12 +37,12 @@ public class LanguageDialog extends StandDialog {
         });
     }
 
-    private void ChangeLauncherLanguage(String language){
+    private void ChangeLauncherLanguage(String language) {
         Resources resources = mContext.getResources();
         DisplayMetrics dm = resources.getDisplayMetrics();
         Configuration config = resources.getConfiguration();
         config.locale = LanguageUtils.getLocaleFromConfig(language);
         resources.updateConfiguration(config, dm);
-        ((MainActivity)mContext).restartLauncher();
+        ((MainActivity) mContext).restartLauncher();
     }
 }

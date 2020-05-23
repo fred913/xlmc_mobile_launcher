@@ -49,8 +49,8 @@ public class MainToolbarUI extends StandUI {
         tipper = new Tipper(mContext);
         setToolbarAsActionbar();
 
-        views = new View[]{buttonInfo,buttonRefresh,buttonLanguage,buttonHome,buttonBack};
-        for(View v : views){
+        views = new View[]{buttonInfo, buttonRefresh, buttonLanguage, buttonHome, buttonBack};
+        for (View v : views) {
             v.setOnClickListener(clickListener);
         }
     }
@@ -58,7 +58,7 @@ public class MainToolbarUI extends StandUI {
     @Override
     public void refreshUI(SettingJson setting) {
         refreshTaskInfo(setting);
-        tipper.refreshTipper(setting,this);
+        tipper.refreshTipper(setting, this);
     }
 
     @Override
@@ -76,41 +76,41 @@ public class MainToolbarUI extends StandUI {
         return layout_toolbar.getVisibility();
     }
 
-    public void setCurrentPosition(String position){
+    public void setCurrentPosition(String position) {
         textPosition.setText(position);
     }
 
-    private void refreshTaskInfo(SettingJson setting){
+    private void refreshTaskInfo(SettingJson setting) {
 
     }
 
-    public void setTaskInfoBackground(int id){
+    public void setTaskInfoBackground(int id) {
         buttonInfo.setBackground(mContext.getResources().getDrawable(id));
     }
 
-    private View.OnClickListener clickListener = new View.OnClickListener(){
+    private View.OnClickListener clickListener = new View.OnClickListener() {
 
         @Override
         public void onClick(View v) {
-            if(v == buttonRefresh){
-                ((MainActivity)mContext).refreshLauncher(null,true);
+            if (v == buttonRefresh) {
+                ((MainActivity) mContext).refreshLauncher(null, true);
             }
-            if(v == buttonBack){
-                ((MainActivity)mContext).backFromHere();
+            if (v == buttonBack) {
+                ((MainActivity) mContext).backFromHere();
             }
-            if(v == buttonHome){
-                ((MainActivity)mContext).switchUIs(((MainActivity)mContext).uiStartGame,mContext.getString(R.string.title_home));
+            if (v == buttonHome) {
+                ((MainActivity) mContext).switchUIs(((MainActivity) mContext).uiStartGame, mContext.getString(R.string.title_home));
             }
-            if(v == buttonInfo){
+            if (v == buttonInfo) {
                 tipper.showTipper(v);
             }
-            if(v == buttonLanguage){
-                ((MainActivity)mContext).dialogLanguage.show();
+            if (v == buttonLanguage) {
+                ((MainActivity) mContext).dialogLanguage.show();
             }
         }
     };
 
-    private void setToolbarAsActionbar(){
-        ((MainActivity)mContext).setSupportActionBar(layout_toolbar);
+    private void setToolbarAsActionbar() {
+        ((MainActivity) mContext).setSupportActionBar(layout_toolbar);
     }
 }
