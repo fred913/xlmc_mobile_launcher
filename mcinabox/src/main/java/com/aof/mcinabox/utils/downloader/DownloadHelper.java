@@ -1,6 +1,7 @@
 package com.aof.mcinabox.utils.downloader;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.util.Log;
 
@@ -33,21 +34,21 @@ public class DownloadHelper {
         FileDownloader.getImpl().pauseAll();
     }
 
-    public static void downloadWithProgressDialog(String Url, String filePath, String tip) {
+    public static void downloadWithProgressDialog(Context con, String Url, String filePath, String tip) {
         // 定义一个dialog为Activity的成员变量
         ProgressDialog mProgressDialog;
 
 // 在OnCreate()方法里面初始化
-        mProgressDialog = new ProgressDialog(MainActivity.this);
+        mProgressDialog = new ProgressDialog(con);
         mProgressDialog.setMessage(tip);
         mProgressDialog.setIndeterminate(true);
         mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         mProgressDialog.setCancelable(true);
 
 // 执行下载器
-        final DownloadTask downloadTask = new DownloadTask(MainActivity.this);
+        final DownloadTask downloadTask = new DownloadTask(Url);
         downloadTask.setPath(filePath);
-        downloadTask.execute(Url);
+        downloadTask.start();
 
         mProgressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override

@@ -41,7 +41,7 @@ public class CreateUserDialog extends StandDialog {
         editUsername = findViewById(R.id.dialog_edittext_input_username);
         editPassword = findViewById(R.id.dialog_edittext_input_userpasswd);
         layoutPassword = findViewById(R.id.dialog_linearlayout_input_userpasswd);
-        checkboxUsermodel = findViewById(R.id.dialog_checkbox_online_model);
+//        checkboxUsermodel = findViewById(R.id.dialog_checkbox_online_model);
         checkboxUsermodel.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
