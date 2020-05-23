@@ -185,8 +185,7 @@ public class LauncherSettingUI extends StandUI {
 //                fc.showDialog();
                 // http://xc_mc.ft2.club/files/mobile_runtime.tar.xz
                 DownloadHelper.downloadWithProgressDialog(mContext, "http://xc_mc.ft2.club/files/mobile_runtime.tar.xz",
-                        MCINABOX_TEMP + "/env.tar.xz", mContext.getString(R.string.dl_env));
-                installRuntimeFromPath(MCINABOX_TEMP + "/env.tar.xz");
+                        MCINABOX_TEMP + "/env.tar.xz", mContext.getString(R.string.dl_env), LauncherSettingUI.this);
             }
             if (v == buttonInstallForge) {
                 installForgeFromInstaller();

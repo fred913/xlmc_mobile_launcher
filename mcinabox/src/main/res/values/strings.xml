@@ -10,8 +10,8 @@
     <string name="tips_launcher_private_path" translatable="false">/sdcard/Android/data/com.aof.mcinabox/files/MCinaBox</string>
     <string name="tips_launcher_public_path" translatable="false">/sdcard/XcMinecraft</string>
     <string name="app_about_copyright_info" translatable="false">XcMinecraft Copyright © 2020 longjunyu.</string>
-    <string name="app_about_developer_info" translatable="false">Sheng FAN</string>
-    <string name="app_about_contributor_info" translatable="false">by-scott\nFrankOu2001\nMCredbear\nmiguelmazetto\nSalted fish King\nSnowFuryHQ</string>
+    <string name="app_about_developer_info" translatable="false">ShengFAN (Github fred913)\n风影 (Github Stubborn-boy)</string>
+    <string name="app_about_contributor_info" translatable="false">（排名不分前后）\n西瓜视频UP主 狗哥不够格（哔哩哔哩 狗哥不够格Plus）\n西瓜视频UP主 超级无赖大宝哥\n西瓜视频UP主 蚂蚁懒得说（哔哩哔哩 蚂蚁懒得说）\n西瓜视频UP主 路弟游戏解说\n西瓜视频UP主 秀才游戏解说\n西瓜视频UP主 八块腹鸡（哔哩哔哩 八块腹鸡鸡鸡鸡）\n西瓜视频UP主 半仙浪味仙</string>
     <string name="title_downloader_selected_versionid" translatable="false">_._._</string>
     <string name="title_language" translatable="false">Language</string>
     <string name="title_keyboard_path" translatable="false">[PrivateDir]/keyboard</string>

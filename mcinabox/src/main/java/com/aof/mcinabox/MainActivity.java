@@ -39,6 +39,7 @@ import com.aof.mcinabox.launcher.uis.UserUI;
 import com.aof.mcinabox.utils.FileTool;
 
 import com.google.gson.Gson;
+import com.liulishuo.filedownloader.FileDownloader;
 
 import java.io.BufferedWriter;
 import java.io.File;
