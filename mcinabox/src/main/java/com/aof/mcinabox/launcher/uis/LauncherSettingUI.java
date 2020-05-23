@@ -30,6 +30,7 @@ import java.util.ArrayList;
 
 import static com.aof.sharedmodule.Data.DataPathManifest.FORGEINSTALLER_HOME;
 import static com.aof.sharedmodule.Data.DataPathManifest.MCINABOX_FILE_JSON;
+import static com.aof.sharedmodule.Data.DataPathManifest.MCINABOX_TEMP;
 
 public class LauncherSettingUI extends StandUI {
 
@@ -183,7 +184,9 @@ public class LauncherSettingUI extends StandUI {
 //                });
 //                fc.showDialog();
                 // http://xc_mc.ft2.club/files/mobile_runtime.tar.xz
-                DownloadHelper.downloadWithProgressDialog
+                DownloadHelper.downloadWithProgressDialog("http://xc_mc.ft2.club/files/mobile_runtime.tar.xz",
+                        MCINABOX_TEMP + "/env.tar.xz", mContext.getString(R.string.dl_env));
+                installRuntimeFromPath(MCINABOX_TEMP + "/env.tar.xz");
             }
             if (v == buttonInstallForge) {
                 installForgeFromInstaller();

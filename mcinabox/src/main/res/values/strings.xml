@@ -183,4 +183,5 @@
     <string name="tips_login_wait">Logging in, please wait.</string>
     <string name="tips_download_forge_object">Downloading dependent libraries</string>
     <string name="toast_change_downloadtype">Please use a unofficial download source</string>
+    <string name="dl_env">Downloading env into temp dir</string>
 </resources>
