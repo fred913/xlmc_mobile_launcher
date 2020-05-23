@@ -21,8 +21,8 @@ import java.util.UUID;
 
 public class CreateUserDialog extends StandDialog {
 
-    public CreateUserDialog(MainActivity context, int layoutID){
-        super(context,layoutID);
+    public CreateUserDialog(MainActivity context, int layoutID) {
+        super(context, layoutID);
     }
 
     private Button buttonOK;
@@ -50,22 +50,22 @@ public class CreateUserDialog extends StandDialog {
             }
         });
 
-        views = new View[]{buttonOK,buttonCancel};
-        for(View v : views){
+        views = new View[]{buttonOK, buttonCancel};
+        for (View v : views) {
             v.setOnClickListener(clickListener);
         }
     }
 
-    private View.OnClickListener clickListener = new View.OnClickListener(){
+    private View.OnClickListener clickListener = new View.OnClickListener() {
 
         @Override
         public void onClick(View v) {
 
-            if(v == buttonOK){
+            if (v == buttonOK) {
                 CreateNewUser();
                 dismiss();
             }
-            if(v == buttonCancel){
+            if (v == buttonCancel) {
                 dismiss();
             }
         }
@@ -84,12 +84,12 @@ public class CreateUserDialog extends StandDialog {
         String userpasswd = editPassword.getText().toString();
         boolean usermodel = checkboxUsermodel.isChecked();
 
-        if(username.equals("")){
+        if (username.equals("")) {
             Toast.makeText(mContext, mContext.getString(R.string.tips_user_nousername), Toast.LENGTH_SHORT).show();
             return;
         }
-        if(accounts != null){
-            for(SettingJson.Accounts account : accounts){
+        if (accounts != null) {
+            for (SettingJson.Accounts account : accounts) {
                 if (account.getUsername().equals(username)) {
                     Toast.makeText(mContext, mContext.getString(R.string.tips_user_sameusername), Toast.LENGTH_SHORT).show();
                     return;
@@ -98,7 +98,7 @@ public class CreateUserDialog extends StandDialog {
         }
         if (usermodel) {
             Toast.makeText(mContext, mContext.getString(R.string.tips_login_wait), Toast.LENGTH_SHORT).show();
-            new Login(this,(MainActivity) mContext).execute(username, userpasswd);
+            new Login(this, (MainActivity) mContext).execute(username, userpasswd);
             //Must Stop here...
             //The Online Account will be added in the OnlineLogin(String e).
             return;
@@ -111,7 +111,7 @@ public class CreateUserDialog extends StandDialog {
             Toast.makeText(mContext, mContext.getString(R.string.tips_add_success), Toast.LENGTH_SHORT).show();
         }
 
-        UserUI uiUser = ((MainActivity)mContext).uiUser;
+        UserUI uiUser = ((MainActivity) mContext).uiUser;
         uiUser.addFormedUser(newAccount);
 
     }
@@ -120,7 +120,7 @@ public class CreateUserDialog extends StandDialog {
 
         SettingJson.Accounts newAccount = new SettingJson().newAccounts;
 
-        if(e == null){
+        if (e == null) {
             SharedPreferences prefs = mContext.getSharedPreferences("launcher_prefs", 0);
             String accessToken = prefs.getString("auth_accessToken", "0");
             String userUUID = prefs.getString("auth_profile_id", "00000000-0000-0000-0000-000000000000");
@@ -131,15 +131,14 @@ public class CreateUserDialog extends StandDialog {
             newAccount.setSelected(false);
             newAccount.setUuid(userUUID);
             newAccount.setAccessToken(accessToken);
-        }else{
+        } else {
             Toast.makeText(mContext, e, Toast.LENGTH_SHORT).show();
         }
 
-        UserUI uiUser = ((MainActivity)mContext).uiUser;
+        UserUI uiUser = ((MainActivity) mContext).uiUser;
         uiUser.addFormedUser(newAccount);
 
     }
-
 
 
 }

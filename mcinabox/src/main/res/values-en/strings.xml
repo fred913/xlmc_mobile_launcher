@@ -6,7 +6,7 @@
 	<string name="title_keyboardsetting">Virtual Keyboard Settings</string>
 	<string name="title_home">Home</string>
 
-	<string name="app_about_mcinabox">MCinaBox Minecraft Launcher is a free, open-source Minecraft launcher, allowing players quick and easy installation and management on Android devices running game. </string>
+	<string name="app_about_mcinabox">XcMinecraft Launcher is a free, open-source Minecraft launcher, allowing players quick and easy installation and management on Android devices running game.</string>
 
 	<string name="app_about_copyright">Copyright Notice</string>
 	<string name="app_about_developer">Developers</string>
@@ -51,8 +51,8 @@
 	<string name="title_select_version">Select version</string>
 	<string name="title_game_launch">Start game</string>
 	<string name="title_downloader_source">Download Source</string>
-	<string name="title_launcher_setting_runtimepack">Import runtime</string>
-	<string name="title_import">Import</string>
+	<string name="title_launcher_setting_runtimepack">Download and Import runtime</string>
+	<string name="title_import">Download and Import</string>
 	<string name="title_about_auncher">About MCinaBox</string>
 	<string name="title_runtime_package_name">Runtime package name</string>
 	<string name="title_runtime_package_platform">Runtime architecture</string>
@@ -112,7 +112,7 @@
 	<string name="tips_function">Features</string>
 	<string name="tips_button_autokeep">Automatically keep</string>
 	<string name="tips_button_hide">Hidden key</string>
-	<string name="tips_addone">Additional</string>
+	<string name="tips_addone">title_import</string>
 	<string name="tips_button_combine">Key combination</string>
 	<string name="tips_button_combine_one">FirKey</string>
 	<string name="tips_button_combine_two">SecKey</string>
@@ -160,7 +160,7 @@
 	<string name="tipper_warn_keyboard_notselected">Not create keyboard layout</string>
 	<string name="tipper_warn_memory_notstable">Current memory size causes crash</string>
 
-	<string name="login_is_demo_account">This account doesn\'t seems to have a Minecraft user linked to it. Did you buy Minecraft?</string>
+	<string name="login_is_demo_account">title_import</string>
 	<string name="tips_login_wait">Logging in, please wait.</string>
 	<string name="title_forge_installer">Forge Installer</string>
 

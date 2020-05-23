@@ -9,12 +9,12 @@ public class DataPathManifest {
             //Sdcard
         SDCARD_HOME = Environment.getExternalStorageDirectory().getAbsolutePath(),
             //MCinaBox
-        MCINABOX_HOME = SDCARD_HOME + "/Android/data/com.aof.mcinabox/files/MCinaBox",
+        MCINABOX_HOME = SDCARD_HOME + "/XcMinecraft",
         MCINABOX_TEMP = MCINABOX_HOME + "/temp",
         MCINABOX_KEYBOARD = MCINABOX_HOME + "/keyboard",
-        MCINABOX_DATA_PUBLIC = SDCARD_HOME + "/MCinaBox",
+        MCINABOX_DATA_PUBLIC = SDCARD_HOME + "/XcMinecraft",
         MCINABOX_DATA_PRIVATE = SDCARD_HOME + "/Android/data/com.aof.mcinabox/files/MCinaBox",
-        MCINABOX_FILE_JSON = MCINABOX_HOME + "/mcinabox.json",
+        MCINABOX_FILE_JSON = MCINABOX_HOME + "/xcminecraft.json",
         MCINABOX_DATA_RUNTIME = MCINABOX_HOME + "/runtimepack",
             //Minecraft
         MINECRAFT_DATA_PUBLIC = MCINABOX_DATA_PUBLIC + "/.minecraft",

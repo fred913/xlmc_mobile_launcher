@@ -12,6 +12,7 @@ import com.aof.mcinabox.launcher.user.UserListAdapter;
 import com.aof.mcinabox.launcher.user.UserListBean;
 
 import static com.aof.mcinabox.DataPathManifest.*;
+import static com.aof.sharedmodule.Data.DataPathManifest.MCINABOX_FILE_JSON;
 
 import java.util.ArrayList;
 
@@ -75,7 +76,8 @@ public class UserUI extends StandUI {
         @Override
         public void onClick(View v) {
             if (v == buttonCreateUser) {
-                ((MainActivity) mContext).dialogCreateUser.show();
+//                ((MainActivity) mContext).dialogCreateUser.show();
+
             }
             if (v == buttonRefreshUserList) {
                 ((MainActivity) mContext).refreshLauncher(null, true);

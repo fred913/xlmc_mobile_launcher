@@ -5,7 +5,7 @@
     <string name="title_launchersetting">啟動器設定</string>
     <string name="title_keyboardsetting">虛擬鍵盤設定</string>
     <string name="title_home">主頁</string>
-    <string name="app_about_mcinabox">MCinaBox Minecraft Launcher是一個免費、開源的Minecraft啟動器，允許玩家在安卓設備上方便快捷的安裝、管理、運行遊戲。啟動器更新請查閱項目開源地址的release版面.\n當您使用本軟件時，就表示您已閱讀並同意本軟件的版權資訊，表示您願意尊重軟件開發者們的勞動成果，表示您願意遵守本軟件的開源協定。\n本軟件仍處於測試階段，如有問題，歡迎到Github進行迴響。</string>
+    <string name="app_about_mcinabox">XcMinecraft Launcher是一個免費、開源的Minecraft啟動器，允許玩家在安卓設備上方便快捷的安裝、管理、運行遊戲。啟動器更新請查閱項目開源地址的release版面.\n當您使用本軟件時，就表示您已閱讀並同意本軟件的版權資訊，表示您願意尊重軟件開發者們的勞動成果，表示您願意遵守本軟件的開源協定。\n本軟件仍處於測試階段，如有問題，歡迎到Github進行迴響。</string>
     <string name="app_about_copyright">版權</string>
     <string name="app_about_developer">開發者</string>
     <string name="app_about_contributor">貢獻者</string>
@@ -46,8 +46,8 @@
     <string name="title_select_version">選擇版本</string>
     <string name="title_game_launch">啟動遊戲</string>
     <string name="title_downloader_source">Minecraft下載源</string>
-    <string name="title_launcher_setting_runtimepack">導入運行庫</string>
-    <string name="title_import">導入</string>
+    <string name="title_launcher_setting_runtimepack">下载/導入運行庫</string>
+    <string name="title_import">下载 導入</string>
     <string name="title_about_auncher">關於MCinaBox</string>
     <string name="title_runtime_package_name">運行庫包名</string>
     <string name="title_runtime_package_platform">運行庫架構</string>

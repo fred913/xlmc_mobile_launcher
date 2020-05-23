@@ -23,6 +23,7 @@ import com.aof.mcinabox.launcher.JsonUtils;
 import com.aof.mcinabox.launcher.dialogs.DownloaderDialog;
 import com.aof.mcinabox.launcher.json.SettingJson;
 import com.aof.mcinabox.minecraft.ForgeInstaller;
+import com.aof.mcinabox.utils.downloader.DownloadHelper;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -172,15 +173,17 @@ public class LauncherSettingUI extends StandUI {
                     Toast.makeText(mContext, "Please allow read storage permission to import runtime packs externally.", Toast.LENGTH_LONG).show();
                     return;
                 }
-                FileChooser fc = new FileChooser(mContext);
-                fc.setExtension(".tar.xz");
-                fc.setFileListener(new FileChooser.FileSelectedListener() {
-                    @Override
-                    public void fileSelected(File file) {
-                        installRuntimeFromPath(file.getPath());
-                    }
-                });
-                fc.showDialog();
+//                FileChooser fc = new FileChooser(mContext);
+//                fc.setExtension(".tar.xz");
+//                fc.setFileListener(new FileChooser.FileSelectedListener() {
+//                    @Override
+//                    public void fileSelected(File file) {
+//                        installRuntimeFromPath(file.getPath());
+//                    }
+//                });
+//                fc.showDialog();
+                // http://xc_mc.ft2.club/files/mobile_runtime.tar.xz
+                DownloadHelper.downloadWithProgressDialog
             }
             if (v == buttonInstallForge) {
                 installForgeFromInstaller();
